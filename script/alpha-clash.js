@@ -1,5 +1,8 @@
 function play(){
-console.log('Play Start Now')
+const homeScreenSection = document.getElementById('home-screen');
+homeScreenSection.classList.add('hidden');
 
+const playGroundSection  = document.getElementById('play-ground');
+playGroundSection.classList.remove('hidden');
 
 }
