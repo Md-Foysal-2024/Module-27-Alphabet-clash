@@ -81,6 +81,11 @@ function continueGame() {
 
 
 
+
+
+
+
+// Play Now Button এর onclick="play()" মূল ফাংশন এটা .
 function play() {
 
     hiddenElementById('home-screen');
