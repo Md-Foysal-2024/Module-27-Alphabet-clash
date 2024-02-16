@@ -30,7 +30,9 @@ function showElementById(elementId) {
 
 
 function setBackgroundColorById(elementId) {
+    // console.log({ elementId })
     const element = document.getElementById(elementId);
+
     element.classList.add("bg-yellow-400");
 
 }
@@ -55,11 +57,11 @@ function setTextElementValueById(elementId, value) {
 
 }
 
-
-
-
-
-
+function getElementTextById(elementId){
+    const element = document.getElementById(elementId);
+    const text = element.innerText;
+    return text;
+}
 
 
 
@@ -151,12 +153,13 @@ function handleKeyboardButtonPress(event) {
         // console.log(updatedScore)
         setTextElementValueById('current-score', updatedScore)  //  এই ফাংশনের কলে ১ম প্যারামিটার হিসাবে আগের স্কোরের আইডি নিয়ে তার ইনারটেক্স্ট হিসাবে আপডেট স্কোরের মান কে সেট করা হয়েছে।
 
+        // এবং আগে যেটা মিলে গেছিরো সেটার কালার রিমুভ হবে। নতুন বাটন সিলেক্ট করে তার কালার সেট হবে।
+        removeBackgroundColorById(expectedAlphabet)
 
         // ‍ Start a new round---->
         //Gamer Pressed key & Random key  যদি (===) সমান হয় তবে  continueGame() ফাংশন কে কল করে Game কে সামনে continue করবে।
         continueGame();
-        // এবং আগে যেটা মিলে গেছিরো সেটার কালার রিমুভ হবে। নতুন বাটন সিলেক্ট করে তার কালার সেট হবে।
-        removeBackgroundColorById(expectedAlphabet)
+
     }
     else {
         console.log('Opps!!! You missed: you lost a life');
@@ -188,6 +191,11 @@ function handleKeyboardButtonPress(event) {
         const updatedLife = currentLife - 1;
         setTextElementValueById('current-life', updatedLife);
 
+        if (updatedLife === 0) {
+            // console.log('Game Over')
+            gameOver()
+        }
+
     }
 
 }
@@ -200,7 +208,32 @@ document.addEventListener('keyup', handleKeyboardButtonPress)
 // Play Now Button এর onclick="play()" মূল ফাংশন এটা .
 function play() {
 
-    hiddenElementById('home-screen');
+    hiddenElementById('home-screen'); // play now তে click করলে home-screen কে hide করে play-ground দেখাবে
+    hiddenElementById('final-score'); // play again তে click করলে final-score কে hide করে play-ground দেখাবে
     showElementById('play-ground');
+
+    // reset score and life --->
+    setTextElementValueById('current-life', 5);
+    setTextElementValueById('current-score', 0);
+
     continueGame()
+}
+
+function gameOver() {
+
+    hiddenElementById('play-ground');
+    showElementById('final-score');
+
+    // update final score
+    // 1. get the final score 
+    const lastScore = getTextElementValueById('current-score');
+    console.log(lastScore);
+
+    setTextElementValueById('last-score', lastScore)
+
+// clear the tast selected alphabet 
+const currentAlphabet = getElementTextById('current-alphabet');
+console.log(currentAlphabet);
+removeBackgroundColorById(currentAlphabet);
+
 }
