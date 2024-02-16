@@ -16,6 +16,7 @@
 //  এই ফাংশনের ভিতরে ভিন্ন ভিন্ন আইডি দিয়ে কল করে দেই তাহলে 
 //  কাজ অনেকটা সহজ হবে এবং বার বার করা লাগবে না শুধু আইডি দিয়ে কল করলেই হবে।
 
+
 function hiddenElementById(elementId) {
     const element = document.getElementById(elementId)
     element.classList.add('hidden');
@@ -28,11 +29,15 @@ function showElementById(elementId) {
 }
 
 
-
-
 function setBackgroundColorById(elementId) {
     const element = document.getElementById(elementId);
-    element.classList.add("bg-orange-400");
+    element.classList.add("bg-yellow-400");
+
+}
+
+function removeBackgroundColorById(elementId) {
+    const element = document.getElementById(elementId);
+    element.classList.remove("bg-yellow-400");
 
 }
 
@@ -68,21 +73,40 @@ function continueGame() {
     console.log('শুধু অক্ষর টা কে রিটার্ন করছি:', alphabet);
 
     // set randomly alphabet to the screen.
-    const currentAlphabet = document.getElementById("current-alphabet");
-    currentAlphabet.innerText = alphabet;
+    const currentAlphabetElement = document.getElementById("current-alphabet");
+    currentAlphabetElement.innerText = alphabet;
 
     setBackgroundColorById(alphabet);
 }
 
 
 
+// Keyboard Button Press---->function
+function handleKeyboardButtonPress(event) {
+    // console.log(event);
+    const gamerPressed = event.key;
+    console.log('Gamer Pressed:', gamerPressed);
+
+    // KEYBOARD  এ press  করলে আমরা যে অক্ষর টি পাবো ।  
+    const currentAlphabetElement = document.getElementById("current-alphabet");
+    // console.log( ' Press The Key:' , currentAlphabetElement.innerText)
+    const currentAlphabet = currentAlphabetElement.innerText;
+    const expectedAlphabet = currentAlphabet.toLowerCase();
+    console.log(gamerPressed, expectedAlphabet)
+
+    // Gamer Pressed  key & Random key  যদি (===) সমান হয় তবে  if  এর ভিতরে ঢুকবে,
+    // আর সমান না হলে  else যাবে।
+    if (gamerPressed === expectedAlphabet) {
+        console.log('You get a point');
+    }
+    else {
+        console.log('Opps!!! You missed: you lost a life');
+    }
+
+}
 
 
-
-
-
-
-
+document.addEventListener('keyup', handleKeyboardButtonPress)
 
 
 // Play Now Button এর onclick="play()" মূল ফাংশন এটা .
