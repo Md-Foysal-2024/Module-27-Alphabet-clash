@@ -41,6 +41,25 @@ function removeBackgroundColorById(elementId) {
 
 }
 
+function getTextElementValueById(elementId) {
+    const element = document.getElementById(elementId);
+    const elementValueText = element.innerText;
+    const value = parseInt(elementValueText);
+    return value;
+
+}
+
+function setTextElementValueById(elementId, value) {
+    const element = document.getElementById(elementId);
+    element.innerText = value;
+
+}
+
+
+
+
+
+
 
 
 
@@ -104,17 +123,33 @@ function handleKeyboardButtonPress(event) {
         // যখন উপরের কন্ডিশন মিলে যাবে তখন আগের স্কোর টাকে নিয়ে 
         //তার সাথে প্রতিবার ১ করে যোগ করে নতুন স্কোর দিবে এবং গেম কে কন্টিনিউ করবে।
 
-        // 1. get the current score
-        const currentScoreElement = document.getElementById("current-score");
-        const currentScoreText = currentScoreElement.innerText;
-        const currentScore = parseInt(currentScoreText);
-        // console.log(currentScore);
 
-        //2. increase the score by +1
-        const newScore = currentScore + 1;
-        // console.log(newScore);
-        //3. show the update score
-        currentScoreElement.innerText = newScore;
+        //(---->
+        // // 1. get the current score------------>
+        // const currentScoreElement = document.getElementById("current-score");
+        // const currentScoreText = currentScoreElement.innerText;
+        // const currentScore = parseInt(currentScoreText);
+        // // console.log(currentScore);
+
+        // //2. increase the score by +1--------->
+        // const newScore = currentScore + 1;
+        // // console.log(newScore);
+
+        // //3. show the update score------------>
+        // currentScoreElement.innerText = newScore;
+        //---->)
+//----------------------------------------------------------------------------------->
+        //উপরের সমস্ত প্রসেস টাকে  আরো সংক্ষেপে করা যাবে, বাহিরে আলাদা ভাবে ফাংশন 
+        //ডিক্লার করে সেই ফাংশন কে এই কন্ডিশনের ভিতরে একটি ভেরিয়েবলে মধ্যে কল করতে হবে,
+        // আর আমরা যে উপাদান টাকে খুজবো তার আইডি কে এই ফাংশনের প্যারামিটার হিসাবে
+        // দিতে হবে, তার পরে যোগ বিয়োগ করে স্কোর আপডেট করতে হবে। 
+
+
+        const currentScore = getTextElementValueById('current-score');
+        console.log(currentScore)
+        const updatedScore = currentScore + 1;
+        console.log(updatedScore)
+        setTextElementValueById('current-score', updatedScore)  //  এই ফাংশনের কলে ১ম প্যারামিটার হিসাবে আগের স্কোরের আইডি নিয়ে তার ইনারটেক্স্ট হিসাবে আপডেট স্কোরের মান কে সেট করা হয়েছে।
 
 
         // ‍ Start a new round---->
@@ -129,16 +164,24 @@ function handleKeyboardButtonPress(event) {
         // যখন উপরের কন্ডিশন মিলবে না তখন আগের স্কোর থেকে
         // প্রতিবার ১ করে বিয়োগ করে নতুন স্কোর দিবে ।
 
- // 1. get the current life count
-const currentLifeElement = document.getElementById("current-life");
-const currentLifeText = currentLifeElement.innerText;
-const currentLife = parseInt(currentLifeText);
+        // (--->
+        // // 1. get the current life count----------->
+        // const currentLifeElement = document.getElementById("current-life");
+        // const currentLifeText = currentLifeElement.innerText;
+        // const currentLife = parseInt(currentLifeText);
 
-//2. decrease the life count by -1
-const newLife = currentLife - 1;
+        // //2. decrease the life count by -1----------->
+        // const newLife = currentLife - 1;
 
-   //3. show the update life count
-currentLifeElement.innerText = newLife;
+        // //3. show the update life count----------->
+        // currentLifeElement.innerText = newLife; 
+        //---->)
+//----------------------------------------------------------------------------------->
+        //উপরের সমস্ত প্রসেস টাকে  আরো সংক্ষেপে করা যাবে, বাহিরে আলাদা ভাবে ফাংশন 
+        //ডিক্লার করে সেই ফাংশন কে এই কন্ডিশনের ভিতরে একটি ভেরিয়েবলে মধ্যে কল করতে হবে,
+        // আর আমরা যে উপাদান টাকে খুজবো তার আইডি কে এই ফাংশনের প্যারামিটার হিসাবে
+        // দিতে হবে, তার পরে যোগ বিয়োগ করে স্কোর আপডেট করতে হবে। 
+
     }
 
 }
