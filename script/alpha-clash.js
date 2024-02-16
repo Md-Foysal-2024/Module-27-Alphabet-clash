@@ -109,12 +109,19 @@ function handleKeyboardButtonPress(event) {
     const gamerPressed = event.key;
     console.log('Gamer Pressed:', gamerPressed);
 
+// Stop the game if Gamer pressed Escape button-->
+if(gamerPressed === 'Escape'){
+    gameOver();
+}
+
+
+
     // Randomly গেম থেকে আমরা যে অক্ষর টি (ramdom key) পাবো ।  
     const currentAlphabetElement = document.getElementById("current-alphabet");
     // console.log( ' Press The Key:' , currentAlphabetElement.innerText)
     const currentAlphabet = currentAlphabetElement.innerText;
     const expectedAlphabet = currentAlphabet.toLowerCase();
-    console.log(gamerPressed, expectedAlphabet);
+    // console.log(gamerPressed, expectedAlphabet);
 
     // Gamer Pressed  key & Random key  যদি (===) সমান হয় তবে  if  এর ভিতরে ঢুকবে,
     // আর সমান না হলে  else যাবে।
