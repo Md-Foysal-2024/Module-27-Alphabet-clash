@@ -84,28 +84,67 @@ function continueGame() {
 // Keyboard Button Press---->function
 function handleKeyboardButtonPress(event) {
     // console.log(event);
+    //  Gamer keyboard  এ press করলে আমরা যে অক্ষর টি পাবো ।  
     const gamerPressed = event.key;
     console.log('Gamer Pressed:', gamerPressed);
 
-    // KEYBOARD  এ press  করলে আমরা যে অক্ষর টি পাবো ।  
+    // Randomly গেম থেকে আমরা যে অক্ষর টি (ramdom key) পাবো ।  
     const currentAlphabetElement = document.getElementById("current-alphabet");
     // console.log( ' Press The Key:' , currentAlphabetElement.innerText)
     const currentAlphabet = currentAlphabetElement.innerText;
     const expectedAlphabet = currentAlphabet.toLowerCase();
-    console.log(gamerPressed, expectedAlphabet)
+    console.log(gamerPressed, expectedAlphabet);
 
     // Gamer Pressed  key & Random key  যদি (===) সমান হয় তবে  if  এর ভিতরে ঢুকবে,
     // আর সমান না হলে  else যাবে।
     if (gamerPressed === expectedAlphabet) {
-        console.log('You get a point');
+        console.log('WOW You get a point');
+
+        //Update Score:--->
+        // যখন উপরের কন্ডিশন মিলে যাবে তখন আগের স্কোর টাকে নিয়ে 
+        //তার সাথে প্রতিবার ১ করে যোগ করে নতুন স্কোর দিবে এবং গেম কে কন্টিনিউ করবে।
+
+        // 1. get the current score
+        const currentScoreElement = document.getElementById("current-score");
+        const currentScoreText = currentScoreElement.innerText;
+        const currentScore = parseInt(currentScoreText);
+        // console.log(currentScore);
+
+        //2. increase the score by +1
+        const newScore = currentScore + 1;
+        // console.log(newScore);
+        //3. show the update score
+        currentScoreElement.innerText = newScore;
+
+
+        // ‍ Start a new round---->
+        //Gamer Pressed key & Random key  যদি (===) সমান হয় তবে  continueGame() ফাংশন কে কল করে Game কে সামনে continue করবে।
+        continueGame();
+        // এবং আগে যেটা মিলে গেছিরো সেটার কালার রিমুভ হবে। নতুন বাটন সিলেক্ট করে তার কালার সেট হবে।
+        removeBackgroundColorById(expectedAlphabet)
     }
     else {
         console.log('Opps!!! You missed: you lost a life');
+        //Update life Score:--->
+        // যখন উপরের কন্ডিশন মিলবে না তখন আগের স্কোর থেকে
+        // প্রতিবার ১ করে বিয়োগ করে নতুন স্কোর দিবে ।
+
+ // 1. get the current life count
+const currentLifeElement = document.getElementById("current-life");
+const currentLifeText = currentLifeElement.innerText;
+const currentLife = parseInt(currentLifeText);
+
+//2. decrease the life count by -1
+const newLife = currentLife - 1;
+
+   //3. show the update life count
+currentLifeElement.innerText = newLife;
     }
 
 }
 
-
+// Gamer Keyboard এ press করার পরে উপরের ফাংশন এর সমস্ত প্রক্রিয়া কে 
+// নিচের এই keyup নামক document এ call back function  হিসাবে ডিক্লার করা হয়েছে।
 document.addEventListener('keyup', handleKeyboardButtonPress)
 
 
