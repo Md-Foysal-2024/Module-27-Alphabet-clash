@@ -138,7 +138,7 @@ function handleKeyboardButtonPress(event) {
         // //3. show the update score------------>
         // currentScoreElement.innerText = newScore;
         //---->)
-//----------------------------------------------------------------------------------->
+        //----------------------------------------------------------------------------------->
         //উপরের সমস্ত প্রসেস টাকে  আরো সংক্ষেপে করা যাবে, বাহিরে আলাদা ভাবে ফাংশন 
         //ডিক্লার করে সেই ফাংশন কে এই কন্ডিশনের ভিতরে একটি ভেরিয়েবলে মধ্যে কল করতে হবে,
         // আর আমরা যে উপাদান টাকে খুজবো তার আইডি কে এই ফাংশনের প্যারামিটার হিসাবে
@@ -146,9 +146,9 @@ function handleKeyboardButtonPress(event) {
 
 
         const currentScore = getTextElementValueById('current-score');
-        console.log(currentScore)
+        // console.log(currentScore)
         const updatedScore = currentScore + 1;
-        console.log(updatedScore)
+        // console.log(updatedScore)
         setTextElementValueById('current-score', updatedScore)  //  এই ফাংশনের কলে ১ম প্যারামিটার হিসাবে আগের স্কোরের আইডি নিয়ে তার ইনারটেক্স্ট হিসাবে আপডেট স্কোরের মান কে সেট করা হয়েছে।
 
 
@@ -176,11 +176,17 @@ function handleKeyboardButtonPress(event) {
         // //3. show the update life count----------->
         // currentLifeElement.innerText = newLife; 
         //---->)
-//----------------------------------------------------------------------------------->
+        //----------------------------------------------------------------------------------->
         //উপরের সমস্ত প্রসেস টাকে  আরো সংক্ষেপে করা যাবে, বাহিরে আলাদা ভাবে ফাংশন 
         //ডিক্লার করে সেই ফাংশন কে এই কন্ডিশনের ভিতরে একটি ভেরিয়েবলে মধ্যে কল করতে হবে,
         // আর আমরা যে উপাদান টাকে খুজবো তার আইডি কে এই ফাংশনের প্যারামিটার হিসাবে
         // দিতে হবে, তার পরে যোগ বিয়োগ করে স্কোর আপডেট করতে হবে। 
+        //-----------------------------------------------------------------------------------> 
+        // বাহিরে ফাংশন ডিক্লার করে এখানে কল করে দেয়ায় ১০ লাইনের কাজ ৩ লাইনে শেষ। হুররে......!
+
+        const currentLife = getTextElementValueById('current-life');
+        const updatedLife = currentLife - 1;
+        setTextElementValueById('current-life', updatedLife);
 
     }
 
